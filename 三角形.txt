@@ -1,0 +1,71 @@
+package sanjiaoxing;
+
+/*
+ * 三角形任意两边之和小于第三边，任意两边之差大于第三边， 则抛出异常
+ */
+
+public class Judge {
+	public Boolean judge(double side1, double side2, double side3) {
+		double a1 = side1+side2;
+		double a2 = side1+side3;
+		double a3 = side3+side2;
+		double a4 = Math.abs(side1-side2);
+		double a5 = Math.abs(side1-side3);
+		double a6 = Math.abs(side3-side2);
+		if(a1<=side3 || a2<=side2 || a3<=side1 || 
+		   a4>=side3 || a5>=side2 || a6>=side1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+}
+
+package sanjiaoxing_02;
+
+public class Area {
+	public double area(double side1, double side2, double side3) {
+		double a;
+		double p;
+		double b;
+		p = (side1 + side2 + side3) / 2;
+		b = p*(p - side1)*(p - side2)*(p - side3);
+		a = Math.sqrt(b);
+		return a;
+	}
+}
+
+
+package sanjiaoxing_02;
+
+import java.util.Scanner;
+
+public class triangle {
+	public static void main(String[] args) {
+		Scanner side1 = new Scanner(System.in);
+		Scanner side2 = new Scanner(System.in);
+		Scanner side3 = new Scanner(System.in);
+		boolean a = true;
+		while(a) {
+			System.out.println("第一条边为：");
+			Double s1 = side1.nextDouble();
+			System.out.println("第二条边为：");
+			Double s2 = side2.nextDouble();
+			System.out.println("第三条边为：");
+			Double s3 = side2.nextDouble();
+			Judge j = new Judge();
+			a = j.judge(s1, s2, s3);
+			Area s = new Area();
+			double S = s.area(s1, s2, s3);
+			if(!a) {
+				System.out.println("面积为:"  + S);
+			}
+		}
+	}
+}
+
+
+
+
+

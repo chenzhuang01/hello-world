@@ -1,0 +1,142 @@
+/*
+ * 异常分为Exception和Error：
+ * Exception是 经过修正以后还能运行的错误，包括RuntimeException和其他异常，
+ * 				RuntimeException是设计或实现方面的问题， 只需要修正错误；
+ * 				其他异常是因为环境的影响可能发生和处理的异常。
+ * Error是指程序遇到了非常严重的错误， 不能简单恢复执行。
+ * 抛出异常:
+ * 	若发生了可处理的异常， 正在运行的程序创建一个异常对象。
+ * 捕捉异常：
+ * 	JVM捕获到异常对象时， 寻找异常对象的处理代码。
+ *throw：
+ *	将产生的异常抛出， 强调动作， 既可以抛出异常的引用， 也可以抛出异常的对象。常用于
+ *主动抛出异常， 将异常对象提交给调用者。
+ *throws：
+ *	一个方法可能会产生异常， 但是没有能力处理这种异常，可以在方法声明处用throws子
+ *句来声明抛出异常， 用throws修饰的方法， 向调用者表明该方法可能会抛出异常， 可能是一
+ *种类型， 也可以是多种类型。
+ *	try—catch—finally语句执行过程：
+ *try{
+ *	可能发生异常的语句；			// 指明可能产生异常的代码段
+ *}
+ *catch（异常类型1 异常对象1）{		// 捕捉异常
+ *	异常处理语句1；
+ *}
+ *catch(异常类型2 异常对象2）{
+ *	异常处理语句2；
+ *}
+ *...
+ *finally{	// 无论是否捕捉到异常都会执行				
+ *	异常结束前的执行语句；
+ *}
+ *多个catch语句时， 系统依次检查， 父类在前， 子类在后。	
+ */
+
+package work_10_18_02;
+
+import java.util.Scanner;
+
+public class yichang_01 {
+	public static void main(String[] args) throws ArrayIndexOutOfBoundsException,ArithmeticException {
+		
+		try {
+			int[] a = new int[5];
+			Scanner sc = new Scanner(System.in);
+			System.out.println("输入除数：");
+			int b = sc.nextInt();
+			System.out.println("输入被除数：");
+			int c = sc.nextInt();
+			int d = b / c;
+			System.out.println("请输入数组索引：");
+			int e = sc.nextInt();
+			System.out.println(a[e]);
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("数组越界异常：" + e);
+		} catch (ArithmeticException e) {
+			System.out.println("被除数为0异常：" + e);
+		}finally{
+			System.out.println("#####");
+		}
+	}
+}
+
+package work_10_18_03;
+
+import java.util.Scanner;
+
+public class Person {
+	private String name;
+	private String sex;
+	private int age;
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		if(age<120 && age>0) {
+			this.age = age;
+		}else {
+			throw new RuntimeException("请输入正确的年龄!");
+		}
+	}
+
+	public void setSex(String sex) {
+		if(sex.equals("female")||sex.equals("male")) {
+			this.sex = sex;
+		}else {
+			throw new RuntimeException("请输入正确的性别！");
+		}
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getSex() {
+		return sex;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+	
+	public void show() {
+		System.out.println("姓名：" + name + " 性别： " + sex + " 年龄:" + age);
+	}
+	
+/*
+ * Scanner s1 = new Scanner(System.in);
+		Person p1 = new Person();
+		System.out.println("请输入姓名：");
+		p1.setName(s1.next());
+		System.out.println("请输入性别：");
+		p1.setSex(s1.next());
+		System.out.println("请输入年龄：");
+		p1.setAge(s1.nextInt());
+ */
+	public void person(){
+		Scanner s1 = new Scanner(System.in);
+		Person p1 = new Person();
+		System.out.println("请输入姓名：");
+		p1.setName(s1.next());
+		System.out.println("请输入性别：");
+		p1.setSex(s1.next());
+		System.out.println("请输入年龄：");
+		p1.setAge(s1.nextInt());
+		p1.show();
+	}
+	
+}
+package work_10_18_03;
+
+public class Test {
+	public static void main(String[] args) {
+		Person p1 = new Person();
+		Person p2 = new Person();
+		p1.person();
+		p2.person();
+		
+	}
+}
