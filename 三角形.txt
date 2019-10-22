@@ -1,7 +1,7 @@
 package sanjiaoxing;
 
 /*
- * Èı½ÇĞÎÈÎÒâÁ½±ßÖ®ºÍĞ¡ÓÚµÚÈı±ß£¬ÈÎÒâÁ½±ßÖ®²î´óÓÚµÚÈı±ß£¬ ÔòÅ×³öÒì³£
+ * ä¸‰è§’å½¢ä»»æ„ä¸¤è¾¹ä¹‹å’Œå°äºç¬¬ä¸‰è¾¹ï¼Œä»»æ„ä¸¤è¾¹ä¹‹å·®å¤§äºç¬¬ä¸‰è¾¹ï¼Œ åˆ™æŠ›å‡ºå¼‚å¸¸
  */
 
 public class Judge {
@@ -14,9 +14,9 @@ public class Judge {
 		double a6 = Math.abs(side3-side2);
 		if(a1<=side3 || a2<=side2 || a3<=side1 || 
 		   a4>=side3 || a5>=side2 || a6>=side1) {
-			return true;
-		}else {
 			return false;
+		}else {
+			return true;
 		}
 	}
 	
@@ -48,18 +48,18 @@ public class triangle {
 		Scanner side3 = new Scanner(System.in);
 		boolean a = true;
 		while(a) {
-			System.out.println("µÚÒ»Ìõ±ßÎª£º");
+			System.out.println("ç¬¬ä¸€æ¡è¾¹ä¸ºï¼š");
 			Double s1 = side1.nextDouble();
-			System.out.println("µÚ¶şÌõ±ßÎª£º");
+			System.out.println("ç¬¬äºŒæ¡è¾¹ä¸ºï¼š");
 			Double s2 = side2.nextDouble();
-			System.out.println("µÚÈıÌõ±ßÎª£º");
+			System.out.println("ç¬¬ä¸‰æ¡è¾¹ä¸ºï¼š");
 			Double s3 = side2.nextDouble();
 			Judge j = new Judge();
 			a = j.judge(s1, s2, s3);
 			Area s = new Area();
 			double S = s.area(s1, s2, s3);
 			if(!a) {
-				System.out.println("Ãæ»ıÎª:"  + S);
+				System.out.println("é¢ç§¯ä¸º:"  + S);
 			}
 		}
 	}
